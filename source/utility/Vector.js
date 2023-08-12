@@ -37,4 +37,4 @@ class Vector {
     }
 }
 
-export {Vector as default}
+export {Vector as default};

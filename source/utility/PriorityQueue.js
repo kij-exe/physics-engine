@@ -15,31 +15,53 @@ class PriorityQueue {
         this.rise(this.nextIndex++);
     }
 
-    // the function to get the next element implemented in such a way that it does not result in change of length of an array. Generally it might result in a huge waste of memory occupied by null entries. However, in my case, it is unlikely that the pq will enough large to a significant wastage while omitting performace loss from constant growing and shrinking
+    // the function to get the next element implemented in such a way that it does not result in a change of array length. Generally it might result in a huge waste of memory occupied by null entries. However, in my case, it is unlikely that the pq will enough large to a significant wastage while omitting performace loss from constant growing and shrinking
     getNext() {
         if (this.isEmpty()) {
             return null;
         }
         var item = this.heap[1];
-        this.heap[1] = null;
-        this.sink(--this.nextIndex);
+        this.heap[1] = this.heap[this.nextIndex - 1];
+        this.heap[--this.nextIndex] = null;
+        this.sink(1);
         return item;
     }
 
-    sink() {
+    sink(index) {
+        // while the node has at least one child
+        while (2 * index < this.nextIndex) {
+            // make an assumption that the first child is the biggest one
+            var maxChildIndex = index * 2;
 
+            // check if there is a second child and if its bigger than the first one
+            if (2 * index + 1 < this.nextIndex &&
+                this.comparator(this.heap[index * 2 + 1], this.heap[index * 2]) > 0 
+                /*right > left*/) {
+                maxChildIndex = index * 2 + 1;
+            }
+
+            // check if the biggest child is greater than the current node. If so, swap and continue, otherwise stop
+            if (this.comparator(this.heap[maxChildIndex], this.heap[index]) > 0 /*child > parent*/) {
+                this.swap(maxChildIndex, index);
+                index = maxChildIndex;
+            } else {
+                break;
+            }
+        }
     }
 
     rise(index) {
-        if (index == 1) {
-            return;
-        }
-        var parentIndex = this.parentIndexOf(index);
-        var parent = this.heap[parentIndex];
-        var child = this.heap[index];
-        if (parent === null || this.comparator(child, parent) > 0 /*child > parent*/) {
-            this.swap(parentIndex, index);
-            this.rise(parentIndex);
+        // while the node has a parent
+        while (index > 1) {
+            var parentIndex = this.parentIndexOf(index);
+            if (this.comparator(this.heap[index], this.heap[parentIndex]) > 0 
+                /*child > parent*/) {
+                this.swap(index, parentIndex);
+                index = parentIndex;
+            }
+            else {
+                break;
+            }
         }
     }
 

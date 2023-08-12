@@ -11,14 +11,10 @@ class Event {
     }
 
     isValid() {
-        return this.latestKnownBall1UpdateAt == this.ball1.lastUpdateAt && this.latestKnownBall2UpdateAt == this.ball2.lastUpdateAt
     }
 
     resolve() {
-        
-        // dummy resolution
-        this.ball1.velocity.multiply(-1);
-        this.ball2.velocity.multiply(-1);
-
     }
 }
+
+export {Event as default};
