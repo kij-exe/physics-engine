@@ -12,12 +12,12 @@ ctx.fill();
 var number = 0;
 
 function foo(time) {
-    console.log("diff", time - (new Date().getTime() - startTime));
     number++;
-    if (number >= 2) {
+    if (number > 2) {
         finishRoutine(time);
         return;
     }
+    console.log("diff", time - (new Date().getTime() - startTime));
 
     requestAnimationFrame(foo);
 }
@@ -34,32 +34,18 @@ function finishRoutine(accumulatedTime) {
 
 var pq = new PriorityQueue();
 
-var arr = [5, 2, 10, 72, 53, 24, 18, 99, 10, 2, 6, 322, 228, 777, 666, 420, 5051]
-
-for (var el of arr) {
-    pq.push(el);
+var aboba = function(arr) {
+    for (var el of arr) {
+        pq.push(el);
+    }
 }
 
-for (var el of arr) {
-    console.log(pq.getNext());
+aboba([27, 52, 39, 80, 71, 2, 5, 100, 12, 9])
+
+console.log(...pq);
+
+for (var i = 0; i < 3; i++) {
+    console.log(pq.getNext())
 }
 
-console.log(...pq.heap)
-
-// console.log(pq.nextIndex)
-
-
-// console.log("iter ")
-
-// for (var i = 0; i < arr.length; i++) {
-//     console.log(pq.isEmpty(), pq.getNext());
-// }
-// console.log(pq.isEmpty(), pq.getNext())
-
-
-
-// for (var el of pq) {
-//     console.log(el);
-// }
-
-// console.log(...pq)
+console.log(...pq);
