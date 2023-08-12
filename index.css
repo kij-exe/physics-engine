@@ -1,0 +1,10 @@
+canvas {
+    border-style: solid;
+    border-width: 1;
+    border-color: black;
+    background-color: aquamarine;
+}
+
+button {
+    font-size: 1.5em;
+}
