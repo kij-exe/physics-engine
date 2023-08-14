@@ -1,15 +1,28 @@
 import Ball from "../bodies/Ball.js"
+import Wall from "../bodies/Wall.js"
 import Vector from "../utility/Vector.js"
+import CoordinateGrid from "./../utility/CoordinateGrid.js"
+
 
 class Simulation {
-    constructor(canvas) {
-        this.canvas = canvas;
+    constructor(DOM_ids) {
+        this.canvas = document.getElementById(DOM_ids.canvas_id);
+        this.ctx = this.canvas.getContext("2d");
+
+        this.grid = new CoordinateGrid(this.canvas, this.ctx);
 
         this.simBodies = [];
         this.addBody(new Ball(
-            new Vector(100, 50),
-            new Vector(1, 1)
+            /*radius = */ 40,
+            /*pos = */ new Vector(300, 200),
+            /*velocity = */ new Vector(1, 1),
+            
         ))
+
+        // this.addBody(new Wall(
+        //     new Vector(200, 300),
+        //     new Vector(400, 400)
+        // ))
 
         this.terminator = 0;
     }
@@ -32,18 +45,16 @@ class Simulation {
 
     update() {
 
-        // for (body of this.simBodies) {
+        // for (var body of this.simBodies) {
         //     body.advance();
         // }
 
     }
 
     redraw() {
-
-        // for (body of this.simBodies) {
-        //     body.redraw();
-        // }
-
+        for (var body of this.simBodies) {
+            body.redraw(this.grid);
+        }
     }
 }
 

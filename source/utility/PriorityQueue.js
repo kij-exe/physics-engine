@@ -22,9 +22,18 @@ class PriorityQueue {
         }
         var item = this.heap[1];
         this.heap[1] = this.heap[this.nextIndex - 1];
-        this.heap[--this.nextIndex] = null;
+
+        // Change an empty space to undefined to maintain integrity (empty elements of an array are declared as undefined if you try to access them)
+        this.heap[--this.nextIndex] = undefined;
         this.sink(1);
         return item;
+    }
+
+    peek() {
+        if (this.isEmpty()) {
+            return null;
+        }
+        return this.heap[1];
     }
 
     sink(index) {

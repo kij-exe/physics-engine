@@ -1,8 +1,8 @@
 canvas {
     border-style: solid;
-    border-width: 1;
     border-color: black;
-    background-color: aquamarine;
+    border: 1;
+    background-color: rgba(179, 244, 232, 0.59);
 }
 
 button {
