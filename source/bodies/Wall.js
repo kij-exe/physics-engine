@@ -1,6 +1,12 @@
+import Vector from "../utility/Vector.js"
 
 
 class Wall {
+    /**
+     * 
+     * @param {Vector} startPoint 
+     * @param {Vector} endPoint 
+     */
     constructor(startPoint, endPoint) {
         this.startPoint = startPoint;
         this.endPoint = endPoint

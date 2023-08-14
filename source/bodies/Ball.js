@@ -2,6 +2,7 @@ import Vector from "../utility/Vector.js"
 
 class Ball {
     /**
+     * 
      * @param {number} radius 
      * @param {Vector} initialPos 
      * @param {Vector} initialVelocity 

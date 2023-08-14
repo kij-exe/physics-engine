@@ -50,8 +50,8 @@ var c = new Vector(350, 250)
 // var a = new Vector(200, 300);
 // var b = new Vector(400, 400);
 
-var a = new Vector(40, 100);
-var b = new Vector(40, 500);
+var a = new Vector(500, 500);
+var b = new Vector(800, 200);
 
 var wall = new Wall(a, b)
 wall.redraw(sim.grid)
