@@ -1,7 +1,7 @@
 
 
 class Event {
-    constructor(ball1, ball2, occuresAt) {
+    constructor(ball1, ball2, occursAt) {
         this.ball1 = ball1;
         this.ball2 = ball2;
 

@@ -6,11 +6,11 @@ class Vector {
         this.y = y;
     }
 
-    get lengthSquared() {
-        return Math.pow(x, 2) + Math.pow(y, 2);
+    lengthSquared() {
+        return Math.pow(this.x, 2) + Math.pow(this.y, 2);
     }
 
-    get length() {
+    length() {
         return Math.sqrt(this.lengthSquared());
     }
 
@@ -80,10 +80,27 @@ class Vector {
         grid.ctx.moveTo(...grid.toCanvasGrid(start));
         grid.ctx.lineTo(...grid.toCanvasGrid(start.added(this)));
         grid.ctx.stroke();
+
+        grid.ctx.beginPath();
+        grid.ctx.fillStyle = "Orange";
+        grid.ctx.arc(
+            ...grid.toCanvasGrid(start.added(this)), 
+            5 * grid.scale, 
+            0, 2 * Math.PI
+        );
+        grid.ctx.fill();
     }
 
     cross(vector) {
         return this.x * vector.y - this.y * vector.x;
+    }
+
+    dot(vector) {
+        return this.x * vector.x + this.y * vector.y;
+    }
+
+    projectedOn(vector) {
+        
     }
 }
 
