@@ -1,5 +1,6 @@
 import Vector from "../utility/Vector.js"
 import Wall from "../bodies/Wall.js"
+import Ball from "../bodies/Ball.js"
 
 
 class Raycast {
@@ -13,13 +14,15 @@ class Raycast {
         this.b;
         this.c;
         this.wall;
+
+        this.r = 30;
     }
 
     start() {
         this.canvas.addEventListener("mousedown", (e) => {
             this.shortcut(e, this);
         });
-    }
+    }ы
 
     shortcut(e, world) {
         world.step(e);
@@ -27,7 +30,7 @@ class Raycast {
 
     end() {
         this.control = 0;
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.canvas.removeEventListener("mousedown", this.step);
     }
 
@@ -35,7 +38,7 @@ class Raycast {
         var x = e.x - this.canvas.getBoundingClientRect().x - 2.727;
         var y = this.canvas.height - (e.y - this.canvas.getBoundingClientRect().y - 2.727);
 
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         if (this.control == 0) {
             this.a = new Vector(x, y);
@@ -43,7 +46,7 @@ class Raycast {
             return;
         }
 
-        if (control == 1) {
+        if (this.control == 1) {
             this.b = new Vector(x, y);
             this.wall = new Wall(this.a, this.b);
             this.wall.redraw(this.grid);
@@ -55,23 +58,31 @@ class Raycast {
 
         if (this.control == 2) {
             this.c = new Vector(x, y);
+            this.cBall = new Ball(3, this.c, this.c, "Black", true);
+            this.cBall.redraw(this.grid)
             this.control++;
             return;
         }
 
+        this.cBall.redraw(this.grid)
 
         var v = new Vector(x, y).subtracted(this.c)
-        // v.redraw(sim.grid, c)
 
-        var k = (this.b.cross(this.c) + this.c.cross(this.a) + this.a.cross(this.b)) /
-        (v.cross(this.b) + a.cross(v))
+        var r_vec = this.c.perpendicularOnWall(this.wall);
+        r_vec.normalize().multiply(this.r);
 
-        // v.multiplied(k).redraw(sim.grid, c, `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 100)`)
+        this.c.add(r_vec);
+
+        var k = (this.b.cross(this.c) + this.c.cross(this.a) + this.a.cross(this.b)) / (v.cross(this.b) + this.a.cross(v))
+
+        this.c.subtract(r_vec);
 
         v.multiplied(k).redraw(this.grid, this.c)
 
         new Ball(30, v.multiplied(k).added(this.c)).redraw(this.grid)
     }
+
+
 }
 
 export {Raycast as default}

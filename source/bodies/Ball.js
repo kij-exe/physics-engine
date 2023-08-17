@@ -8,11 +8,12 @@ class Ball {
      * @param {Vector} initialVelocity 
      * @param {string} color 
      */
-    constructor(radius, initialPos, initialVelocity = new Vector(0, 0), color="Red") {
+    constructor(radius, initialPos, initialVelocity = new Vector(0, 0), color="Red", toFill = false) {
         this.radius = radius;
         this.pos = initialPos;
         this.velocity = initialVelocity;
         this.color = color;
+        this.toFill = toFill;
 
         // console.log("The ball at initial position " + this.pos.toString() + " instantiated");
     }
@@ -32,7 +33,9 @@ class Ball {
             0, 2 * Math.PI
         );
         grid.ctx.stroke();
-        // grid.ctx.fill();
+        if (this.toFill) {
+            grid.ctx.fill();
+        }
     }
 
 }

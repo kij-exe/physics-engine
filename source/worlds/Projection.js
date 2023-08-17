@@ -61,15 +61,15 @@ class Projection {
 
         var ab = this.b.subtracted(this.a);
 
-        var k = ab.dot(v) / ab.lengthSquared();
+        var proj = v.projectedOn(ab);
 
-        var proj = ab.multiplied(k)
+        // proj.redraw(this.grid, this.c, "Red");
 
-        proj.redraw(this.grid, this.c, "Red")
+        // var perp = v.subtracted(proj);
 
-        var perp = v.subtracted(proj);
+        var perp = this.c.added(v).perpendicularOnWall(this.wall);
         
-        perp.redraw(this.grid, this.c.added(proj), "Red")
+        perp.redraw(this.grid, this.c.added(v), "Red")
     }
 }
 

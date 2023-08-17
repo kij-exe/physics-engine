@@ -1,6 +1,12 @@
+import Wall from "../bodies/Wall.js"
 
 
 class Vector {
+    /**
+     * Vector class serves role of a vector as well as of a point in 2d plain
+     * @param {number} x 
+     * @param {number} y 
+     */
     constructor(x = 0, y = 0) {
         this.x = x;
         this.y = y;
@@ -33,6 +39,17 @@ class Vector {
         return new Vector(vector.x * scalar, vector.y * scalar);
     }
 
+    divide(scalar) {
+        this.multiply(1 / scalar);
+    }
+
+    divided(scalar) {
+        return new Vector(
+            this.x / scalar,
+            this.y / scalar
+        )
+    }
+
     add(vector) {
         this.x += vector.x;
         this.y += vector.y;
@@ -49,8 +66,10 @@ class Vector {
         return new Vector(vector1.x + vector2.x, vector1.y + vector2.y);
     }
 
-    subtract(){
-
+    subtract(vector){
+        this.x -= vector.x;
+        this.y -= vector.y;
+        return this;
     }
 
     subtracted(vector) {
@@ -66,6 +85,17 @@ class Vector {
 
     copy() {
         return new Vector(this.x, this.y)
+    }
+
+    normalize() {
+        var length = this.length();
+        this.divide(length); 
+        return this;
+    }
+
+    normalized() {
+        var length = this.length;
+        return this.divided(length);
     }
 
     // Allows to easily spread vector coordinates. For instance when a copy of a vector is required when copy function cannot be used.
@@ -99,8 +129,25 @@ class Vector {
         return this.x * vector.x + this.y * vector.y;
     }
 
+    /**
+     * The function returns a vector projected on the passed as a prameter vector  
+     * @param {Vector} vector 
+     * @returns {Vector}
+     */
     projectedOn(vector) {
-        
+        var k = this.dot(vector) / vector.lengthSquared();
+        return vector.multiplied(k);
+    }
+    
+    /**
+     * The function returns a perpendicular vector from the point (point is a vector on which the function was called) to the wall passed as a parameter 
+     * @param {Wall} wall 
+     */
+    perpendicularOnWall(wall) {
+        var a_c = wall.startPoint.subtracted(this);
+        var c_a = a_c.multiplied(-1);
+        var a_b = wall.startPoint.subtracted(wall.endPoint);
+        return a_c.added(c_a.projectedOn(a_b));
     }
 }
 

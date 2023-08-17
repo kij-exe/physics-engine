@@ -3,7 +3,7 @@ import Vector from "../utility/Vector.js"
 
 class Wall {
     /**
-     * 
+     * A wall can be thought of as a vector fixed at a certain point in a 2d plain
      * @param {Vector} startPoint 
      * @param {Vector} endPoint 
      */
