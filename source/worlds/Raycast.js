@@ -20,12 +20,8 @@ class Raycast {
 
     start() {
         this.canvas.addEventListener("mousedown", (e) => {
-            this.shortcut(e, this);
+            this.step(e)
         });
-    }ы
-
-    shortcut(e, world) {
-        world.step(e);
     }
 
     end() {

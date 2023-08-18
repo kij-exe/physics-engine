@@ -12,6 +12,8 @@ var DOM_ids = {
 
 var sim = new Simulation(DOM_ids);
 
+// sim.start()
+
 sim.grid.ctx.lineWidth = 3;
 
 // sim.redraw();
@@ -31,13 +33,27 @@ function foo(time) {
 
 var startTime = new Date().getTime();
 
-requestAnimationFrame(foo);
+// requestAnimationFrame(foo);
 
 function finishRoutine(accumulatedTime) {
     console.log("Time elapsed: " + (new Date().getTime() - startTime));
     
     console.log("Accumulated time: " + accumulatedTime);
 }
+
+// document.getElementById("button_pause").addEventListener(
+//     "click",
+//     () => {
+//         sim.pause();
+//     }
+// )
+
+// document.getElementById("button_start").addEventListener(
+//     "click",
+//     () => {
+//         sim.start();
+//     }
+// )
 
 document.getElementById("button_clear").addEventListener(
     "click",

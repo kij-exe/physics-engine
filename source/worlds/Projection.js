@@ -19,12 +19,8 @@ class Projection {
 
     start() {
         this.canvas.addEventListener("mousedown", (e) => {
-            this.shortcut(e, this);
+            this.step(e);
         });
-    }
-
-    shortcut(e, world) {
-        world.step(e);
     }
 
     end() {
@@ -63,7 +59,7 @@ class Projection {
 
         var proj = v.projectedOn(ab);
 
-        // proj.redraw(this.grid, this.c, "Red");
+        proj.redraw(this.grid, this.c, "Red");
 
         // var perp = v.subtracted(proj);
 
