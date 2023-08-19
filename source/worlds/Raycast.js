@@ -19,6 +19,7 @@ class Raycast {
     }
 
     start() {
+        document.getElementById("context").innerHTML = "First two clicks on the canvas create the wall between two specified points. The third click will initialize the stationary point. Further clicks will \"launch a ball\" in the direction from the point you clicked on #to the stationary point till it collides with the wall."
         this.canvas.addEventListener("mousedown", (e) => {
             this.step(e)
         });

@@ -18,6 +18,7 @@ class Projection {
     }
 
     start() {
+        document.getElementById("context").innerHTML = "First two clicks on the canvas create the wall between two specified points. Further clicks will build a right-angled triangle with a hypotenuse of a line between the first point of the wall and the point you clicked on."
         this.canvas.addEventListener("mousedown", (e) => {
             this.step(e);
         });
