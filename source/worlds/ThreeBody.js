@@ -162,7 +162,7 @@ class ThreeBody {
         for (var body of this.bodies) {
             body.redraw(this.grid);
 
-            // body.force.redraw(this.grid, body.pos)
+            body.velocity.redraw(this.grid, body.pos)
         }
     }
 

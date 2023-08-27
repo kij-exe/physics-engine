@@ -3,7 +3,7 @@ import Vector from "../utility/Vector.js"
 
 class PointMass {
 
-    constructor(initial_position, mass = 1000000, initial_velocity = new Vector(0, 0), radius = 15, color = "Black") {
+    constructor(initial_position, mass = 1000000, initial_velocity = new Vector(0, 0), radius = 12, color = "Black") {
         this.pos = initial_position;
         this.mass = mass;
         this.inverseMass = 1 / mass;
