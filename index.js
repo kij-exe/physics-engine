@@ -5,6 +5,8 @@ import Wall from "./source/bodies/Wall.js"
 import Ball from "./source/bodies/Ball.js"
 import Projection from "./source/worlds/Projection.js"
 import Raycast from "./source/worlds/Raycast.js"
+import ThreeBody from "./source/worlds/ThreeBody.js"
+
 
 var DOM_ids = {
     canvas_id: "canvas1"
@@ -74,6 +76,14 @@ function startWorld(newWorld) {
     world.start();
 }
 
+document.getElementById("raycast").addEventListener(
+    "click",
+    () => {
+        startWorld(new Raycast(sim.canvas, sim.grid));
+    }
+)
+
+
 document.getElementById("projection").addEventListener(
     "click",
     () => {
@@ -81,10 +91,10 @@ document.getElementById("projection").addEventListener(
     }
 )
 
-document.getElementById("raycast").addEventListener(
+document.getElementById("three-body").addEventListener(
     "click",
     () => {
-        startWorld(new Raycast(sim.canvas, sim.grid));
+        startWorld(new ThreeBody(sim.canvas, sim.grid));
     }
 )
 
