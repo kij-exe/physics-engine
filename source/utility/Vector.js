@@ -107,6 +107,7 @@ class Vector {
     redraw(grid, start = new Vector(0, 0), color = "Black") {
         grid.ctx.beginPath();
         grid.ctx.strokeStyle = color;
+        grid.ctx.lineWidth = 3;
         grid.ctx.moveTo(...grid.toCanvasGrid(start));
         grid.ctx.lineTo(...grid.toCanvasGrid(start.added(this)));
         grid.ctx.stroke();

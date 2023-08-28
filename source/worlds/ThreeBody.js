@@ -2,6 +2,7 @@ import Vector from "../utility/Vector.js"
 import ExplicitEuler from "../integration/ExplicitEuler.js"
 import SemiImplicitEuler from "../integration/SemiImplicitEuler.js"
 import PointMass from "../bodies/PointMass.js"
+import Wall from "../bodies/Wall.js"
 
 
 class ThreeBody {
@@ -150,8 +151,11 @@ class ThreeBody {
     gravity_from_A_on_B(bodyA, bodyB) {
         var distance = bodyA.pos.subtracted(bodyB.pos);
 
-        var k = this.G * bodyA.mass * bodyB.mass /
-        Math.max(Math.pow(distance.lengthSquared(), 1.3/2), Math.pow(bodyA.radius + bodyB.radius, 2));
+        var denominator = Math.max(Math.pow(distance.lengthSquared(), 1.3/2), Math.pow(bodyA.radius + bodyB.radius, 2));
+
+        // var denominator = Math.pow(distance.lengthSquared(), 1.3/2);
+
+        var k = this.G * bodyA.mass * bodyB.mass / denominator;
 
         distance.normalize();
 
@@ -162,7 +166,25 @@ class ThreeBody {
         for (var body of this.bodies) {
             body.redraw(this.grid);
 
+            this.draw_triangles();
             body.velocity.redraw(this.grid, body.pos)
+        }
+    }
+
+    draw_triangles() {
+        if (this.bodies.length < 3) {
+            return;
+        }
+        for (var i = 0; i < 3; i++) {
+            var bodyA = this.bodies[i % 3];
+            var bodyB = this.bodies[(i + 1) % 3];
+            var bodyC = this.bodies[(i + 2) % 3];
+
+            var wall = new Wall(bodyA.pos, bodyB.pos, "Black", 1);
+            wall.redraw(this.grid);
+            var middle = wall.middle();
+
+            new Wall(bodyC.pos, middle, "Black", 1).redraw(this.grid);
         }
     }
 
