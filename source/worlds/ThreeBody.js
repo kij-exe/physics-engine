@@ -141,11 +141,6 @@ class ThreeBody {
         this.requestID = requestAnimationFrame(() => {
             this.simulate();
         })
-
-        if (this.stopped) {
-            cancelAnimationFrame(this.requestID);
-            this.stopped = false;
-        }
     }
 
     gravity_from_A_on_B(bodyA, bodyB) {
