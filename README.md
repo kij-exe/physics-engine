@@ -1,2 +1,2 @@
-# physics engine repo 07.08.2023 
+# 2d Physics engine in javascript 
 https://kij-exe.github.io/physics-engine/
