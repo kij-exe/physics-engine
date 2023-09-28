@@ -16,7 +16,7 @@ class PriorityQueue {
     }
 
     // the function to get the next element implemented in such a way that it does not result in a change of array length. Generally it might result in a huge waste of memory occupied by null entries. However, in my case, it is unlikely that the pq will enough large to a significant wastage while omitting performace loss from constant growing and shrinking
-    getNext() {
+    pop() {
         if (this.isEmpty()) {
             return null;
         }
@@ -98,7 +98,7 @@ class PriorityQueue {
             next: function() {
                 return {
                     done: this.copiedPq.isEmpty(),
-                    value: this.copiedPq.getNext()
+                    value: this.copiedPq.pop()
                 }
             }
         }

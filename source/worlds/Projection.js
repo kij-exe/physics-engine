@@ -1,37 +1,21 @@
 import Vector from "../utility/Vector.js"
 import Wall from "../bodies/Wall.js"
+import GenericSimulation from "./GenericSimulation.js";
 
 
-class Projection {
+class Projection extends GenericSimulation {
     constructor(canvas, grid) {
-        this.canvas = canvas;
-        this.ctx = this.canvas.getContext("2d");
-        this.grid = grid;
+        super(canvas, grid);
 
-        this.control = 0;
         this.a;
         this.b;
         
         this.c;
 
         this.wall;
-    }
 
-    start() {
-        document.getElementById("context").innerHTML = "First two clicks on the canvas create the wall between two specified points. Further clicks will build a right-angled triangle with a hypotenuse of a line between the first point of the wall and the point you clicked on."
-        
-        // this.canvas.addEventListener("mousedown", (e) => {
-        //     this.step(e);
-        // });
+        this.context = "First two clicks on the canvas create the wall between two specified points. Further clicks will build a right-angled triangle with a hypotenuse of a line between the first point of the wall and the point you clicked on."
 
-        this.canvas.onmousedown = (e) => {
-            this.step(e)
-        }
-    }
-
-    end() {
-        this.control = 0;
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
     }
 
     step(e) {

@@ -1,41 +1,29 @@
-import Vector from "../utility/Vector.js"
-import Wall from "../bodies/Wall.js"
-import Ball from "../bodies/Ball.js"
+import Vector from "../utility/Vector.js";
+import Wall from "../bodies/Wall.js";
+import Ball from "../bodies/Ball.js";
+import GenericSimulation from "./GenericSimulation.js";
+import Block1D from "../bodies/Block1D.js";
 
 
-class Raycast {
+class Raycast extends GenericSimulation {
     constructor(canvas, grid) {
-        this.canvas = canvas;
-        this.ctx = this.canvas.getContext("2d");
-        this.grid = grid;
-
-        this.control = 0;
+        super(canvas, grid);
+        
         this.a;
         this.b;
         this.c;
         this.wall;
 
         this.r = 30;
-    }
 
-    start() {
-        document.getElementById("context").innerHTML = "First two clicks on the canvas create the wall between two specified points. The third click will initialize the stationary point. Further clicks will \"launch a ball\" in the direction from the point you clicked on, to the stationary point till it collides with the wall."
+        this.context = "First two clicks on the canvas create the wall between two specified points. The third click will initialize the stationary point. Further clicks will \"launch a ball\" in the direction from the point you clicked on, to the stationary point till it collides with the wall."
 
-        // this.canvas.addEventListener("mousedown", (e) => {
-        //     this.step(e)
-        // });
-
-        this.canvas.onmousedown = (e) => {
-            this.step(e)
-        }
-    }
-
-    end() {
-        this.control = 0;
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.testBlock = new Block1D(50, 50, 
+            new Vector(100, 100))
     }
 
     step(e) {
+
         var x = e.x - this.canvas.getBoundingClientRect().x - 2.727;
         var y = this.canvas.height - (e.y - this.canvas.getBoundingClientRect().y - 2.727);
 
@@ -62,7 +50,6 @@ class Raycast {
             this.cBall = new Ball(3, this.c, this.c, "Black", true);
             this.cBall.redraw(this.grid)
             this.control++;
-            return;
         }
 
         this.cBall.redraw(this.grid)
@@ -80,9 +67,10 @@ class Raycast {
 
         v.multiplied(k).redraw(this.grid, this.c)
 
-        new Ball(30, v.multiplied(k).added(this.c)).redraw(this.grid)
-    }
+        new Ball(30, v.multiplied(k).added(this.c)).redraw(this.grid);
 
+        this.testBlock.redraw(this.grid);
+    }
 
 }
 

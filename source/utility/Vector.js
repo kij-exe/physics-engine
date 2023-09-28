@@ -104,13 +104,14 @@ class Vector {
         yield this.y;
     }
 
-    redraw(grid, start = new Vector(0, 0), color = "Black") {
+    redraw(grid, start = new Vector(0, 0), color = "Grey") {
         grid.ctx.beginPath();
         grid.ctx.strokeStyle = color;
         grid.ctx.lineWidth = 3;
         grid.ctx.moveTo(...grid.toCanvasGrid(start));
         grid.ctx.lineTo(...grid.toCanvasGrid(start.added(this)));
         grid.ctx.stroke();
+        grid.ctx.closePath();
 
         grid.ctx.beginPath();
         grid.ctx.fillStyle = "Orange";
@@ -120,6 +121,7 @@ class Vector {
             0, 2 * Math.PI
         );
         grid.ctx.fill();
+        grid.ctx.closePath();
     }
 
     cross(vector) {

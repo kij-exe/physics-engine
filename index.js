@@ -6,6 +6,7 @@ import Ball from "./source/bodies/Ball.js"
 import Projection from "./source/worlds/Projection.js"
 import Raycast from "./source/worlds/Raycast.js"
 import ThreeBody from "./source/worlds/ThreeBody.js"
+import CountingPi from "./source/worlds/CountingPi.js"
 
 
 var DOM_ids = {
@@ -95,6 +96,13 @@ document.getElementById("three-body").addEventListener(
     "click",
     () => {
         startWorld(new ThreeBody(sim.canvas, sim.grid));
+    }
+)
+
+document.getElementById("counting-pi").addEventListener(
+    "click",
+    () => {
+        startWorld(new CountingPi(sim.canvas, sim.grid));
     }
 )
 

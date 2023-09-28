@@ -1,53 +1,24 @@
-import Vector from "../utility/Vector.js"
-import ExplicitEuler from "../integration/ExplicitEuler.js"
-import SemiImplicitEuler from "../integration/SemiImplicitEuler.js"
-import PointMass from "../bodies/PointMass.js"
-import Wall from "../bodies/Wall.js"
+import Vector from "../utility/Vector.js";
+import ExplicitEuler from "../integration/ExplicitEuler.js";
+import SemiImplicitEuler from "../integration/SemiImplicitEuler.js";
+import PointMass from "../bodies/PointMass.js";
+import Wall from "../bodies/Wall.js";
+import GenericSimulation from "./GenericSimulation.js";
 
 
-class ThreeBody {
+class ThreeBody extends GenericSimulation {
     constructor(canvas, grid) {
-        this.canvas = canvas;
-        this.ctx = this.canvas.getContext("2d");
-        this.grid = grid;
-
-        this.control = 0;
+        super(canvas, grid);
 
         this.body1;
         this.body2;
         this.body3;
 
-        this.bodies = []
-
         this.integrator = new SemiImplicitEuler();
         this.G = 0.1;
 
-        this.prevTime = 0;
+        this.context = "to be added yet";
 
-        this.stopped = false;
-    }
-
-    start() {
-        document.getElementById("context").innerHTML = "to be added yet"
-
-        // this.canvas.addEventListener("mousedown", (e) => {
-        //     this.step(e)
-        // });
-
-        this.canvas.onmousedown = (e) => {
-            this.step(e)
-        }
-
-        this.stopped = false;
-    }
-
-    end() {
-        this.control = 0;
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.bodies = [];
-        
-        this.stopped = true;
-        cancelAnimationFrame(this.requestID);
     }
 
     step(e) {
@@ -182,7 +153,7 @@ class ThreeBody {
             new Wall(bodyC.pos, middle, "Black", 1).redraw(this.grid);
         }
     }
-
 }
+
 
 export {ThreeBody as default}

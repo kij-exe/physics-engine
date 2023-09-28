@@ -45,13 +45,14 @@ class Simulation {
         this.step();
     }
 
-    step(time = 0) {
+    step() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
+        var time = new Date().getTime();
         var dt = time - this.prevFrame;
         this.prevFrame = time;
         
-        // to convert from miliseconds to seconds
+        // divide by 1000 to convert from miliseconds to seconds
         this.update(dt/1000);
 
         this.redraw();
@@ -60,18 +61,13 @@ class Simulation {
             return;
         }
 
-        requestAnimationFrame((time) => {
-            this.step(time)
-            // this.shortcut(this, time);
+        requestAnimationFrame(() => {
+            this.step()
         });
     }
 
     pause() {
         this.paused = true;
-    }
-
-    shortcut(world, time) {
-        world.step(time)
     }
 
     update(dt) {
