@@ -17,8 +17,8 @@ class ThreeBody extends GenericSimulation {
         this.integrator = new SemiImplicitEuler();
         this.G = 0.1;
 
-        this.context = "to be added yet";
-
+        this.context = "The very famous \"3 Body Problem\" is a common example of a chaotic system. The system consists of three massive bodies that move freely under each other's gravitational forces. The system does not have an analytical solution, meaning that there is no set of equations that can determine the state of the system after some amount of time given the initial state. In my simulation, I use numerical integration (semi-implicit Euler in this case, however any other method can be easily substituted instead) to incrementally solve the system";
+    
     }
 
     step(e) {

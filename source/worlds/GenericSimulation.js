@@ -26,13 +26,19 @@ class GenericSimulation {
     }
 
     end() {
-        document.getElementById("context").innerHTML = "";
+        // document.getElementById("context").innerHTML = "";
         this.control = 0;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.bodies = [];
         this.stopped = true;
         
         cancelAnimationFrame(this.requestID);
+    }
+
+    draw_bodies() {
+        for (var body of this.bodies) {
+            body.redraw(this.grid);
+        }
     }
 
     step(e) {   }

@@ -16,10 +16,8 @@ class Raycast extends GenericSimulation {
 
         this.r = 30;
 
-        this.context = "First two clicks on the canvas create the wall between two specified points. The third click will initialize the stationary point. Further clicks will \"launch a ball\" in the direction from the point you clicked on, to the stationary point till it collides with the wall."
+        this.context = "First two clicks on the canvas create the wall between two specified points. The third click will initialize the stationary point. Further clicks will \"launch a ball\" in the direction from the stationary point to the point you clicked on till it collides with the wall."
 
-        this.testBlock = new Block1D(50, 50, 
-            new Vector(100, 100))
     }
 
     step(e) {
@@ -68,8 +66,6 @@ class Raycast extends GenericSimulation {
         v.multiplied(k).redraw(this.grid, this.c)
 
         new Ball(30, v.multiplied(k).added(this.c)).redraw(this.grid);
-
-        this.testBlock.redraw(this.grid);
     }
 
 }

@@ -17,6 +17,7 @@ var sim = new Simulation(DOM_ids);
 
 // sim.start()
 
+sim.grid.ctx.font = "1.5rem Times-New-Roman";
 sim.grid.ctx.lineWidth = 3;
 
 // sim.redraw();
