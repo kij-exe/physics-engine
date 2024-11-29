@@ -132,7 +132,7 @@ class ThreeBody extends GenericSimulation {
         for (var body of this.bodies) {
             body.redraw(this.grid);
 
-            this.draw_triangles();
+            // this.draw_triangles();
             body.velocity.redraw(this.grid, body.pos)
         }
     }
