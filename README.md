@@ -1,6 +1,11 @@
-# 2d Physics engine in javascript 
+# Geometry / physics simulations
 https://kij-exe.github.io/physics-engine/
 
-A "physics engine" project as a playground for some simulations.
+Developed for my own educational purposes. I have implemented various concepts of computational geometry and put them into simulations with a trivial user interface.
+These include:
+- Raycasting
+- Vector projection
+- Three body simulation
+- "Counting PI" simulation of colliding blocks
 
-The website presents four setups to play around with. Explanations are given on the website.
+The website presents four setups to play around with. Explanations are given below the canvas.
